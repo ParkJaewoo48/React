@@ -1,5 +1,11 @@
 import "./App.css";
-import { useState, useRef, useReducer, useCallback } from "react";
+import {
+  useState,
+  useRef,
+  useReducer,
+  useCallback,
+  createContext,
+} from "react";
 import Header from "./components/Header";
 import List from "./components/List";
 import Editor from "./components/Editor";
@@ -41,6 +47,8 @@ function reducer(state, action) {
       return state;
   }
 }
+
+const TodoContext = createContext();
 
 function App() {
   const [todos, dispatch] = useReducer(reducer, mockData);
