@@ -48,7 +48,7 @@ function reducer(state, action) {
   }
 }
 
-const TodoContext = createContext();
+export const TodoContext = createContext();
 
 function App() {
   const [todos, dispatch] = useReducer(reducer, mockData);
@@ -83,8 +83,17 @@ function App() {
     <>
       <div className="App">
         <Header />
-        <Editor onCreate={onCreate} />
-        <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
+        <TodoContext.Provider
+          value={{
+            todos,
+            onCreate,
+            onUpdate,
+            onDelete,
+          }}
+        >
+          <Editor />
+          <List />
+        </TodoContext.Provider>
       </div>
     </>
   );
